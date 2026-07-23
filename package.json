@@ -1,0 +1,20 @@
+{
+  "name": "videocraft-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -c \"cyan,magenta\" -n \"api,worker\" \"bun run --filter @videocraft/api-gateway dev\" \"bun run --filter @videocraft/worker dev\"",
+    "build": "bun run --filter '*' build",
+    "test": "bun run --filter '*' test"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.0"
+  }
+}
