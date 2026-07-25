@@ -1,0 +1,19 @@
+{
+  "preset_name": "Cinematic Epic",
+  "description": "High-budget Hollywood blockbuster look.",
+  "camera": {
+    "lens": "Anamorphic",
+    "focal_length": "35mm",
+    "aspect_ratio": "2.39:1",
+    "movement": "Slow tracking, smooth dolly"
+  },
+  "lighting": {
+    "style": "High contrast, motivated practicals",
+    "color_grade": "Teal and Orange"
+  },
+  "music": {
+    "genre": "Orchestral",
+    "tempo": "Slow to Medium"
+  },
+  "prompt_injection": "shot on 35mm anamorphic lens, 2.39:1 aspect ratio, cinematic lighting, teal and orange color grade, blockbuster film, 8k resolution, photorealistic"
+}

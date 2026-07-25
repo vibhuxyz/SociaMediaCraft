@@ -1,0 +1,19 @@
+{
+  "preset_name": "Moody Luxury",
+  "description": "Exclusive, expensive, sensual, and dark.",
+  "camera": {
+    "lens": "Spherical Telephoto",
+    "focal_length": "85mm - 135mm",
+    "aspect_ratio": "16:9 or 4:5",
+    "movement": "Very slow, deliberate, creeping"
+  },
+  "lighting": {
+    "style": "Low-key, single light source",
+    "color_grade": "Crushed blacks, monochrome with gold/amber accents"
+  },
+  "music": {
+    "genre": "Dark Ambient / Jazz",
+    "tempo": "Slow"
+  },
+  "prompt_injection": "low-key lighting, chiaroscuro, deep crushed shadows, luxury aesthetic, single light source, moody atmosphere, 85mm lens, depth of field"
+}

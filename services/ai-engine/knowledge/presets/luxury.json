@@ -1,0 +1,16 @@
+{
+  "camera": {
+    "lens": "85mm",
+    "lighting": "Soft Golden",
+    "movement": "Slow Dolly"
+  },
+  "color_palette": [
+    "#000000",
+    "#D4AF37",
+    "#FFFFFF"
+  ],
+  "music": {
+    "tempo": "Slow",
+    "genre": "Ambient"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "template_name": "YouTube Short",
+  "description": "High-retention, fast-paced vertical video optimized for the YouTube algorithm.",
+  "metadata": {
+    "project_type": "YouTube Short",
+    "required_duration": "15s - 60s",
+    "platform": "YouTube"
+  },
+  "required_knowledge_categories": [
+    "platforms",
+    "storytelling",
+    "prompting",
+    "music",
+    "voice"
+  ],
+  "agent_workflow": [
+    "Director",
+    "Knowledge Selector",
+    "Story Architect",
+    "Prompt Engineer",
+    "Quality Reviewer"
+  ],
+  "structural_requirements": {
+    "shot_count": { "min": 10, "max": 25 },
+    "mandatory_elements": [
+      "High-energy Curiosity Hook (0-2s)",
+      "Rapid visual changes (every 2-3s)",
+      "Visual center-punching (9:16 safe zones)",
+      "Loopable ending"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "hook_strategy": { "type": "string" },
+      "shots": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "timestamp": { "type": "string" },
+            "action": { "type": "string" },
+            "on_screen_text": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

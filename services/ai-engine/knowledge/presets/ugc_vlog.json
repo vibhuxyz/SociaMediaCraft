@@ -1,0 +1,19 @@
+{
+  "preset_name": "UGC Vlog",
+  "description": "User-generated content, authentic, low-fi social media style.",
+  "camera": {
+    "lens": "Spherical Wide",
+    "focal_length": "14mm - 24mm",
+    "aspect_ratio": "9:16",
+    "movement": "Handheld, shaky, selfie-angle"
+  },
+  "lighting": {
+    "style": "Natural light, ring light",
+    "color_grade": "Unfiltered, slightly blown out highlights"
+  },
+  "music": {
+    "genre": "Trending Pop / Lo-Fi",
+    "tempo": "Fast"
+  },
+  "prompt_injection": "shot on iPhone front camera, 9:16 vertical video, handheld shaky cam, natural lighting, authentic vlog style, unedited raw footage"
+}

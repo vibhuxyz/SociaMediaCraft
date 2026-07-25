@@ -1,0 +1,19 @@
+{
+  "preset_name": "Corporate Interview",
+  "description": "Clean, trustworthy, professional talking head.",
+  "camera": {
+    "lens": "Spherical Standard/Telephoto",
+    "focal_length": "50mm - 85mm",
+    "aspect_ratio": "16:9",
+    "movement": "Static on tripod, slight slider movement"
+  },
+  "lighting": {
+    "style": "Three-point lighting, soft key, bright rim light",
+    "color_grade": "Natural, clean, true-to-life skin tones"
+  },
+  "music": {
+    "genre": "Corporate Chillhop",
+    "tempo": "Medium"
+  },
+  "prompt_injection": "shot on 85mm lens, professional corporate interview, three point lighting, softbox, blurred office background, 4k, clean aesthetic"
+}

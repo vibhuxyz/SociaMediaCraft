@@ -1,0 +1,64 @@
+{
+  "template_name": "Cinematic Trailer",
+  "description": "A highly produced, narrative-driven trailer mimicking Hollywood film standards.",
+  "metadata": {
+    "project_type": "Trailer",
+    "required_duration": "60s - 90s",
+    "platform": "Multi-platform"
+  },
+  "required_knowledge_categories": [
+    "cinematography",
+    "lenses",
+    "lighting",
+    "color_grading",
+    "storytelling",
+    "sound_design",
+    "music"
+  ],
+  "agent_workflow": [
+    "Director",
+    "Knowledge Selector",
+    "Story Architect",
+    "Cinematography Director",
+    "Sound Designer",
+    "Prompt Engineer"
+  ],
+  "structural_requirements": {
+    "shot_count": { "min": 15, "max": 40 },
+    "mandatory_elements": [
+      "Slow atmospheric build (Act 1)",
+      "Rising tension / Riser sound effects (Act 2)",
+      "Rapid montage / Climax (Act 3)",
+      "Hard cut to black with Impact boom",
+      "Title Card"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "theme": { "type": "string" },
+      "acts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "act_name": { "type": "string" },
+            "pacing": { "type": "string" },
+            "shots": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "shot_size": { "type": "string" },
+                  "lens": { "type": "string" },
+                  "visuals": { "type": "string" },
+                  "foley_and_music": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "template_name": "Standard Commercial Advertisement",
+  "description": "A 30-second narrative-driven commercial focusing on brand value and a clear Call to Action.",
+  "metadata": {
+    "project_type": "Advertisement",
+    "required_duration": "30s",
+    "platform": "Multi-platform"
+  },
+  "required_knowledge_categories": [
+    "advertising",
+    "storytelling",
+    "cinematography",
+    "lighting",
+    "prompting",
+    "music",
+    "voice"
+  ],
+  "agent_workflow": [
+    "Director",
+    "Knowledge Selector",
+    "Story Architect",
+    "Cinematography Director",
+    "Environment Designer",
+    "Sound Designer",
+    "Prompt Engineer",
+    "Quality Reviewer"
+  ],
+  "structural_requirements": {
+    "shot_count": { "min": 6, "max": 12 },
+    "mandatory_elements": [
+      "The Hook (0-3s)",
+      "The Problem",
+      "The Solution (Product Reveal)",
+      "The Call to Action (Logo & Tagline)"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "title": { "type": "string" },
+      "logline": { "type": "string" },
+      "shots": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "shot_number": { "type": "integer" },
+            "duration": { "type": "string" },
+            "visual_prompt": { "type": "string" },
+            "voiceover": { "type": "string" },
+            "sound_design": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

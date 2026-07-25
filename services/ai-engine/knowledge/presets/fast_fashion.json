@@ -1,0 +1,19 @@
+{
+  "preset_name": "Fast Fashion",
+  "description": "High energy, quick cuts, vibrant colors for Gen-Z apparel.",
+  "camera": {
+    "lens": "Spherical Wide to Normal",
+    "focal_length": "24mm - 50mm",
+    "aspect_ratio": "9:16",
+    "movement": "Whip pans, crash zooms, kinetic"
+  },
+  "lighting": {
+    "style": "High-key, hard flash, neon accents",
+    "color_grade": "Highly saturated, vibrant, pastel or neon"
+  },
+  "music": {
+    "genre": "EDM / Trap / Pop",
+    "tempo": "Fast (120+ BPM)"
+  },
+  "prompt_injection": "editorial fashion photography, hard flash lighting, vibrant saturated colors, dynamic pose, 9:16 aspect ratio, high energy, streetwear"
+}

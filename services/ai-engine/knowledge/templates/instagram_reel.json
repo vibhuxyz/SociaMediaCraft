@@ -1,0 +1,51 @@
+{
+  "template_name": "Instagram Reel (Aesthetic)",
+  "description": "A highly curated, visually stunning 9:16 video focusing on lifestyle, beauty, and mood.",
+  "metadata": {
+    "project_type": "Instagram Reel",
+    "required_duration": "15s - 30s",
+    "platform": "Instagram"
+  },
+  "required_knowledge_categories": [
+    "platforms",
+    "color_grading",
+    "visual_styles",
+    "cinematography",
+    "music",
+    "prompting"
+  ],
+  "agent_workflow": [
+    "Director",
+    "Knowledge Selector",
+    "Cinematography Director",
+    "Environment Designer",
+    "Prompt Engineer"
+  ],
+  "structural_requirements": {
+    "shot_count": { "min": 5, "max": 15 },
+    "mandatory_elements": [
+      "Aesthetic Hook (0-2s)",
+      "Trending Audio integration",
+      "Premium Color Grade",
+      "Clear right-side margin (UI safe zone)"
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "aesthetic_theme": { "type": "string" },
+      "color_palette": { "type": "string" },
+      "shots": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "visual_description": { "type": "string" },
+            "camera_movement": { "type": "string" },
+            "music_cue": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

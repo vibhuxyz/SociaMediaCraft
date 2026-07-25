@@ -1,0 +1,19 @@
+{
+  "preset_name": "Product Macro",
+  "description": "Extreme close-up detail for textures and luxury products.",
+  "camera": {
+    "lens": "Macro Spherical",
+    "focal_length": "100mm",
+    "aspect_ratio": "16:9",
+    "movement": "Slow pan, static"
+  },
+  "lighting": {
+    "style": "Studio product wrap, hero spotlight",
+    "color_grade": "High key or Low key depending on product"
+  },
+  "music": {
+    "genre": "Ambient / Electronic",
+    "tempo": "Slow"
+  },
+  "prompt_injection": "100mm macro lens, extreme close up, razor thin depth of field, microscopic texture detail, studio product lighting, specular highlights"
+}
