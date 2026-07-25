@@ -5,11 +5,12 @@ import amqp from 'amqplib';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 import { S3Client } from '@aws-sdk/client-s3';
+import { prisma } from '@videocraft/database'; // <--- V2 Import
 
 dotenv.config({ path: '../../.env' });
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -66,7 +67,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   }
 });
 
-// Endpoint: Queue a Job
+// Endpoint: Queue a Job (V0 Legacy)
 app.post('/api/jobs', async (req, res) => {
   try {
     const { type, payload } = req.body;
@@ -92,6 +93,62 @@ app.post('/api/jobs', async (req, res) => {
   } catch (error) {
     console.error('Error queuing job:', error);
     res.status(500).json({ error: 'Failed to queue job' });
+  }
+});
+
+// V2 Endpoint: Polling endpoint for the Frontend to check Job status
+app.get('/api/jobs/:id', async (req, res) => {
+  try {
+    const job = await prisma.job.findUnique({
+      where: { id: req.params.id }
+    });
+    
+    if (!job) return res.status(404).json({ error: 'Job not found' });
+    
+    res.json(job);
+  } catch (error) {
+    console.error('Error fetching job:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// V1/V2 Endpoint: Generate a Video Plan (Producer)
+app.post('/api/plan', async (req, res) => {
+  try {
+    const { prompt } = req.body;
+    if (!prompt) return res.status(400).json({ error: 'Prompt is required' });
+    
+    // 1. V2 DB Integration: Create the Job in Postgres as "PENDING"
+    const job = await prisma.job.create({
+      data: {
+        type: 'VIDEO_PLAN',
+        status: 'PENDING',
+        payload: { prompt }
+      }
+    });
+    
+    // 2. Connect to RabbitMQ
+    const connection = await amqp.connect(RABBITMQ_URL);
+    const channel = await connection.createChannel();
+    
+    const queue = 'orchestrator_queue';
+    await channel.assertQueue(queue, { durable: true });
+    
+    // 3. Send the generic job to Orchestrator so it can determine the workflow
+    const message = { id: job.id, type: 'youtube_video', prompt };
+    channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
+    
+    console.log(`[API Gateway] Saved to DB & Sent to RabbitMQ:`, job.id);
+    
+    setTimeout(() => {
+      connection.close();
+    }, 500);
+    
+    // 4. Return the Postgres Job ID to the React Frontend so it can start polling!
+    res.status(202).json({ message: 'Plan generation started!', planId: job.id });
+  } catch (error) {
+    console.error('Error queuing plan:', error);
+    res.status(500).json({ error: 'Failed to queue plan' });
   }
 });
 

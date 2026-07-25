@@ -1,0 +1,10 @@
+{
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "python.venvPath": "services/agents",
+        "python.venv": "venv"
+      }
+    }
+  }
+}

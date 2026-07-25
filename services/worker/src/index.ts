@@ -1,37 +1,30 @@
 import amqp from 'amqplib';
 import dotenv from 'dotenv';
+import { startNotificationService } from './notifications/sse';
+import { startPlanningWorker } from './workers/planning.worker';
+// Additional workers (e.g. video.worker.ts, audio.worker.ts) would be imported here
 
 dotenv.config({ path: '../../.env' });
 
 const RABBITMQ_URL = process.env.RABBITMQ_URL || 'amqp://user:password@localhost:5672';
-const QUEUE_NAME = 'ai_jobs';
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
 
-async function startWorker() {
-  try {
-    const connection = await amqp.connect(RABBITMQ_URL);
-    const channel = await connection.createChannel();
-    
-    await channel.assertQueue(QUEUE_NAME, { durable: true });
-    channel.prefetch(1); // Process one message at a time
-    
-    console.log(`[Worker] Waiting for messages in queue: ${QUEUE_NAME}`);
-    
-    channel.consume(QUEUE_NAME, async (msg) => {
-      if (msg !== null) {
-        const job = JSON.parse(msg.content.toString());
-        console.log(`[Worker] Processing job:`, job.id);
-        
-        // Mock processing time
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        
-        console.log(`[Worker] Completed job:`, job.id);
-        channel.ack(msg);
-      }
-    });
-  } catch (error) {
-    console.error('Worker failed to connect:', error);
-    setTimeout(startWorker, 5000); // Retry after 5 seconds
-  }
+async function bootstrap() {
+  console.log('🚀 Starting Task Workers & Notification Service...');
+  
+  // 1. Start Notification Service
+  startNotificationService(REDIS_URL, 6001);
+  
+  // 2. Connect to RabbitMQ
+  const connection = await amqp.connect(RABBITMQ_URL);
+  connection.on('error', (err) => console.error('RabbitMQ Error:', err));
+  
+  // 3. Mount specific workers
+  await startPlanningWorker(connection);
+  
+  // Later:
+  // await startVideoWorker(connection);
+  // await startAudioWorker(connection);
 }
 
-startWorker();
+bootstrap().catch(console.error);

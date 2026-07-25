@@ -1,28 +1,32 @@
-// Version 2: Workflow Engine
-// LangGraph execution and state machines
+// Version 2: Polling & Video Plan Generation
 
-export interface WorkflowLog {
-  node: string;
-  status: 'running' | 'completed' | 'skipped';
-  message: string;
+export interface JobState {
+  id: string;
+  status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED';
+  result: any;
 }
 
-export async function executeWorkflow(prompt: string): Promise<WorkflowLog[]> {
-  try {
-    const res = await fetch('/api/v2/workflow', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt }),
-    });
-    if (!res.ok) throw new Error('Failed to execute workflow');
-    return await res.json();
-  } catch {
-    console.warn("Backend not available, mocking V2 workflow...");
-    return new Promise(resolve => setTimeout(() => resolve([
-      { node: 'Planner', status: 'completed', message: 'Generated initial plan' },
-      { node: 'Storyboard', status: 'completed', message: 'Created visual storyboard' },
-      { node: 'Prompt Optimizer', status: 'completed', message: 'Refined prompts for quality' },
-      { node: 'Router', status: 'completed', message: 'Routed to correct execution engines' },
-    ]), 2000));
+const API_BASE = 'http://localhost:8080/api';
+
+export async function generatePlan(prompt: string): Promise<string> {
+  const res = await fetch(`${API_BASE}/plan`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt }),
+  });
+  
+  if (!res.ok) {
+    throw new Error('Failed to start plan generation');
   }
+  
+  const data = await res.json();
+  return data.planId; // Returns the PostgreSQL Job ID
+}
+
+export async function getPlanStatus(jobId: string): Promise<JobState> {
+  const res = await fetch(`${API_BASE}/jobs/${jobId}`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch job status');
+  }
+  return await res.json();
 }
