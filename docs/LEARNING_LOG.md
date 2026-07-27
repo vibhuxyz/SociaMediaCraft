@@ -19,13 +19,14 @@ The following topics will be taught organically as we build the system:
 - [ ] Nodes
 - [ ] Edges
 - [ ] Conditional Edges
-- [ ] State
+- [x] State
 - [ ] Checkpointing
 - [ ] Retry
 - [ ] Interrupt
 - [ ] Graph Execution
 - [ ] StateGraph
-- [ ] State Management
+- [x] State Management
+- [x] Tool Calling
 
 
 
@@ -60,3 +61,4 @@ The following topics will be taught organically as we build the system:
 
 ## Progression Tracking
 - **Session 04**: Introduction to Python state structures, Pydantic basics, and LangGraph architecture.
+- **Session 05**: Deep dive into LangGraph, State Machines, Reducers (`Annotated`, `operator.add`), and defining the shared `GraphState`.

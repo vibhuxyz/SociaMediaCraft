@@ -6,6 +6,6 @@ async def commercial_agent_node(state):
         state,
         CampaignStrategy,
         "Define campaign goal, emotion, CTA, and core message.",
-        CampaignStrategy(),
+        CampaignStrategy(), state_key="campaign_strategy"
     )
     return {"campaign_strategy": plan}

@@ -6,6 +6,6 @@ async def emotion_analyzer_node(state):
         state,
         EmotionPlan,
         "Map emotional progression across the narrative.",
-        EmotionPlan(),
+        EmotionPlan(), state_key="emotion_plan"
     )
     return {"emotion_plan": plan}

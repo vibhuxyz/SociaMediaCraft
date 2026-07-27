@@ -6,6 +6,6 @@ async def environment_designer_node(state):
         state,
         EnvironmentDesignPlan,
         "Build the production locations, architecture, weather, lighting, and props.",
-        EnvironmentDesignPlan(),
+        EnvironmentDesignPlan(), state_key="environment_sheet"
     )
     return {"environment_sheet": plan}

@@ -152,6 +152,47 @@ app.post('/api/plan', async (req, res) => {
   }
 });
 
+// Endpoint: Submit answers to a job's pending clarification questions and resume planning
+app.post('/api/jobs/:id/answer', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { answers } = req.body;
+
+    if (!answers || typeof answers !== 'object') {
+      return res.status(400).json({ error: 'answers object is required' });
+    }
+
+    const job = await prisma.job.findUnique({ where: { id } });
+    if (!job) return res.status(404).json({ error: 'Job not found' });
+    if (job.status !== 'AWAITING_CLARIFICATION') {
+      return res.status(409).json({ error: `Job is not awaiting clarification (status: ${job.status})` });
+    }
+
+    const originalPrompt = (job.payload as any)?.prompt || '';
+    await prisma.job.update({ where: { id }, data: { status: 'PROCESSING' } });
+
+    const connection = await amqp.connect(RABBITMQ_URL);
+    const channel = await connection.createChannel();
+
+    const queue = 'planning_queue';
+    await channel.assertQueue(queue, { durable: true });
+
+    const message = { id, prompt: originalPrompt, resume: true, answers };
+    channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
+
+    console.log(`[API Gateway] Resuming job with clarification answers:`, id);
+
+    setTimeout(() => {
+      connection.close();
+    }, 500);
+
+    res.status(202).json({ message: 'Answer submitted, resuming plan generation', planId: id });
+  } catch (error) {
+    console.error('Error submitting answer:', error);
+    res.status(500).json({ error: 'Failed to submit answer' });
+  }
+});
+
 import { initS3Bucket } from './init-s3';
 
 app.listen(port, async () => {

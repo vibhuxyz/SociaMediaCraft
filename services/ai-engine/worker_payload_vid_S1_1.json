@@ -1,0 +1,19 @@
+{
+  "job_id": "vid_S1_1",
+  "job_id_parent": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "parent_job_id": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "base_prompt": "Subject: Establishing shot of KRC Coffee Shop with morning light. Environment: Street with golden sunlight through trees. Camera: Wide shot, static. Lighting: Natural morning glow illuminating the shop. Motion Sequence: 1. Static camera capturing a tranquil morning 2. Sunlight subtly illuminating the shop 3. Leaves gently rustle in light breeze. Facial Expression: N/A. Object Interaction: N/A. Negative Constraints: Avoid traffic sounds.",
+  "strategy": "auto",
+  "references": {
+    "character_id": "char_1",
+    "environment_id": "env_1"
+  },
+  "generation": {
+    "model": "video_generation_model",
+    "source": "image",
+    "prompt": "Subject: Establishing shot of KRC Coffee Shop with morning light. Environment: Street with golden sunlight through trees. Camera: Wide shot, static. Lighting: Natural morning glow illuminating the shop. Motion Sequence: 1. Static camera capturing a tranquil morning 2. Sunlight subtly illuminating the shop 3. Leaves gently rustle in light breeze. Facial Expression: N/A. Object Interaction: N/A. Negative Constraints: Avoid traffic sounds.",
+    "camera_motion": "Static",
+    "duration": 3
+  },
+  "input_image_urls": []
+}

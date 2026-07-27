@@ -1,0 +1,25 @@
+{
+  "job_id": "img_S3_4",
+  "job_id_parent": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "parent_job_id": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "base_prompt": "Subject: Customer's hands warming around a coffee cup. Environment: Rustic wooden table with morning light. Camera: Close-up with slow zoom-in. Lighting: Gentle, warm lighting around the hands and cup. Facial Expression: N/A. Object Interaction: Emphasize hands holding the cup for warmth. Negative Constraints: Avoid showing full face or background clutter. Style Tags: Cinematic, Warm tones, Close-up, Slow zoom, Intimate feel",
+  "negative_prompt": "Avoid showing full face or background clutter.",
+  "strategy": "auto",
+  "references": {
+    "character_id": "char_1",
+    "environment_id": "env_1"
+  },
+  "generation": {
+    "model": "image_generation_model",
+    "prompt": "Subject: Customer's hands warming around a coffee cup. Environment: Rustic wooden table with morning light. Camera: Close-up with slow zoom-in. Lighting: Gentle, warm lighting around the hands and cup. Facial Expression: N/A. Object Interaction: Emphasize hands holding the cup for warmth. Negative Constraints: Avoid showing full face or background clutter. Style Tags: Cinematic, Warm tones, Close-up, Slow zoom, Intimate feel",
+    "negative_prompt": "Avoid showing full face or background clutter.",
+    "width": 1920,
+    "height": 1080,
+    "cfg": 7.5,
+    "steps": 50,
+    "references": [
+      "path/to/coffee_cup_hands_reference_image"
+    ],
+    "seed": 13579
+  }
+}

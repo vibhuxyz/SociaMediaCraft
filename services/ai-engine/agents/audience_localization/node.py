@@ -6,6 +6,6 @@ async def audience_localization_node(state):
         state,
         AudienceLocalizationPlan,
         "Define country, language, accent, cultural context, and regional rules.",
-        AudienceLocalizationPlan(),
+        AudienceLocalizationPlan(), state_key="audience_localization"
     )
     return {"audience_localization": plan}

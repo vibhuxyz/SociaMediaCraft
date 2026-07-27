@@ -6,6 +6,6 @@ async def character_designer_node(state):
         state,
         CharacterDesignPlan,
         "Create reusable visual character sheets.",
-        CharacterDesignPlan(),
+        CharacterDesignPlan(), state_key="character_sheet"
     )
     return {"character_sheet": plan}

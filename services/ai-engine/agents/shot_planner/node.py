@@ -6,6 +6,6 @@ async def shot_planner_node(state):
         state,
         ShotPlan,
         "Expand storyboard scenes into executable shots.",
-        ShotPlan(),
+        ShotPlan(), state_key="shot_plan"
     )
     return {"shot_plan": plan}

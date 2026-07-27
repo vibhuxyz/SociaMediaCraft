@@ -1,0 +1,25 @@
+{
+  "job_id": "img_S1_0",
+  "job_id_parent": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "parent_job_id": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "base_prompt": "Subject: KRC Coffee Shop exterior with inviting outdoor seating and greenery. Environment: Sunny with a light breeze, bright daylight. Camera: Wide shot, static. Lighting: Natural sunlight filtering through trees, creating a cozy ambiance. Facial Expression: N/A. Object Interaction: N/A. Negative Constraints: Avoid a crowded street view. Style Tags: Photorealistic, Cinematic lighting, Ultra detailed, 8K, Wide angle",
+  "negative_prompt": "Avoid a crowded street view.",
+  "strategy": "auto",
+  "references": {
+    "character_id": "char_1",
+    "environment_id": "env_1"
+  },
+  "generation": {
+    "model": "image_generation_model",
+    "prompt": "Subject: KRC Coffee Shop exterior with inviting outdoor seating and greenery. Environment: Sunny with a light breeze, bright daylight. Camera: Wide shot, static. Lighting: Natural sunlight filtering through trees, creating a cozy ambiance. Facial Expression: N/A. Object Interaction: N/A. Negative Constraints: Avoid a crowded street view. Style Tags: Photorealistic, Cinematic lighting, Ultra detailed, 8K, Wide angle",
+    "negative_prompt": "Avoid a crowded street view.",
+    "width": 1920,
+    "height": 1080,
+    "cfg": 7.5,
+    "steps": 50,
+    "references": [
+      "path/to/coffee_shop_reference_image"
+    ],
+    "seed": 12345
+  }
+}

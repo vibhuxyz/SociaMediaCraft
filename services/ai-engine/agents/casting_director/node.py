@@ -6,6 +6,6 @@ async def casting_director_node(state):
         state,
         CastingPlan,
         "Define roles, ages, archetypes, nationality, and build for all characters.",
-        CastingPlan(),
+        CastingPlan(), state_key="casting"
     )
     return {"casting": plan}

@@ -14,38 +14,31 @@
     "music",
     "prompting"
   ],
-  "agent_workflow": [
-    "Director",
-    "Knowledge Selector",
+  "workflow": [
     "Cinematography Director",
     "Environment Designer",
     "Prompt Engineer"
   ],
-  "structural_requirements": {
-    "shot_count": { "min": 5, "max": 15 },
-    "mandatory_elements": [
-      "Aesthetic Hook (0-2s)",
-      "Trending Audio integration",
-      "Premium Color Grade",
-      "Clear right-side margin (UI safe zone)"
+  "required_outputs": ["CreativePlan", "ShotList", "PromptPack"],
+  "scene_limit": 8,
+  "duration": 30,
+  "generation_strategy": "parallel",
+  "required_assets": ["trending_audio"],
+  "quality_checks": [
+    "Check if hook happens in first 3 seconds",
+    "Check if framing is strictly 9:16 vertical"
+  ],
+  "hard_rules": {
+    "Story Architect": [
+      "Duration: 30 sec max",
+      "Hook within 3 sec"
+    ],
+    "Cinematography Director": [
+      "Aspect Ratio: 9:16",
+      "Right side margin required for UI"
+    ],
+    "Environment Designer": [
+      "Must have premium aesthetic look"
     ]
-  },
-  "output_schema": {
-    "type": "object",
-    "properties": {
-      "aesthetic_theme": { "type": "string" },
-      "color_palette": { "type": "string" },
-      "shots": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "visual_description": { "type": "string" },
-            "camera_movement": { "type": "string" },
-            "music_cue": { "type": "string" }
-          }
-        }
-      }
-    }
   }
 }

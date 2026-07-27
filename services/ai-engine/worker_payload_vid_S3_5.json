@@ -1,0 +1,19 @@
+{
+  "job_id": "vid_S3_5",
+  "job_id_parent": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "parent_job_id": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "base_prompt": "Subject: Hands around a warmly lit coffee mug. Environment: Cozy table in morning light. Camera: Close-up, slow zoom-in. Lighting: Warm, intimate focus on hands and mug. Motion Sequence: 1. Hands wrap around the mug 2. Gentle steam rises from coffee 3. Slow zoom into the warmth of the scene. Facial Expression: N/A. Object Interaction: Hands holding and warming the coffee cup. Negative Constraints: Avoid showing any faces or distractions.",
+  "strategy": "auto",
+  "references": {
+    "character_id": "char_1",
+    "environment_id": "env_1"
+  },
+  "generation": {
+    "model": "video_generation_model",
+    "source": "image",
+    "prompt": "Subject: Hands around a warmly lit coffee mug. Environment: Cozy table in morning light. Camera: Close-up, slow zoom-in. Lighting: Warm, intimate focus on hands and mug. Motion Sequence: 1. Hands wrap around the mug 2. Gentle steam rises from coffee 3. Slow zoom into the warmth of the scene. Facial Expression: N/A. Object Interaction: Hands holding and warming the coffee cup. Negative Constraints: Avoid showing any faces or distractions.",
+    "camera_motion": "Slow zoom-in",
+    "duration": 5
+  },
+  "input_image_urls": []
+}

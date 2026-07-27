@@ -6,6 +6,6 @@ async def storyboard_director_node(state):
         state,
         StoryboardPlan,
         "Translate screenplay scenes into visual storyboard concepts.",
-        StoryboardPlan(),
+        StoryboardPlan(), state_key="storyboard"
     )
     return {"storyboard": plan}

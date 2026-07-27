@@ -15,7 +15,8 @@ async def missing_info_detector_node(state):
     plan = await run_structured_agent(
         state,
         MissingInformationPlan,
-        "Compare available requirements against required creative information.",
+        "Compare available requirements against required creative information. Do NOT flag creative choices (e.g. camera, style, tone, mood, call to action) as missing. Only flag hard factual business requirements as missing. "
+        "CRITICAL: Do NOT flag 'legal restrictions', 'brand guidelines (logos, colors)', or 'promotions/discounts' as missing unless the prompt explicitly implies they are needed. Assume they are not needed by default.",
         fallback,
     )
     return {"missing_information": plan.missing_information}

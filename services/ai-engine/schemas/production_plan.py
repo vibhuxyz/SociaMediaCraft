@@ -10,12 +10,19 @@ class Character(BaseModel):
     description: str = Field(description="Visual description of the character for image generation.")
     voice_profile: str = Field(description="Description of how their voice should sound (e.g., raspy, deep, energetic).")
 
+class MicroAction(BaseModel):
+    time: str = Field(description="Time window for this action (e.g. 0.0-0.5)")
+    action: str = Field(description="The precise physical action happening in this time window")
+
 class Shot(BaseModel):
-    shot_id: int = Field(description="Sequential ID of the shot.")
+    shot_id: str = Field(description="Sequential ID of the shot. Can be alphanumeric if split (e.g., 4A, 4B).")
     camera_angle: str = Field(description="The camera angle (e.g., Close-up, Wide Shot).")
     action_description: str = Field(description="What is happening visually in this specific shot.")
     dialogue: Optional[str] = Field(default=None, description="Any dialogue spoken during this shot.")
     estimated_duration: float = Field(description="Estimated duration of the shot in seconds.")
+    complexity_score: int = Field(default=1, description="Action complexity score (1-10).")
+    risky_interactions: List[str] = Field(default_factory=list, description="List of risky hand-object interactions detected.")
+    micro_actions: List[MicroAction] = Field(default_factory=list, description="Chronological sequence of specific physical micro-actions.")
 
 class Scene(BaseModel):
     scene_id: int = Field(description="Sequential ID of the scene.")

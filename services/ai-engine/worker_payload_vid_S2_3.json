@@ -1,0 +1,19 @@
+{
+  "job_id": "vid_S2_3",
+  "job_id_parent": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "parent_job_id": "f0d959a1-d15b-4c37-ac76-38681961e9df",
+  "base_prompt": "Subject: Barista preparing coffee with milk art. Environment: Coffee shop interior, rustic decor. Camera: Medium shot, slow pan capturing the process. Lighting: Warm lighting focused on coffee. Motion Sequence: 1. Barista steams milk 2. Pours milk into coffee mug 3. Creates heart-shaped milk art 4. Barista's warm smile. Facial Expression: Determined yet welcoming smile from barista. Object Interaction: Detailed focus on milk art creation. Negative Constraints: Avoid spillage or fumbling.",
+  "strategy": "auto",
+  "references": {
+    "character_id": "char_1",
+    "environment_id": "env_1"
+  },
+  "generation": {
+    "model": "video_generation_model",
+    "source": "image",
+    "prompt": "Subject: Barista preparing coffee with milk art. Environment: Coffee shop interior, rustic decor. Camera: Medium shot, slow pan capturing the process. Lighting: Warm lighting focused on coffee. Motion Sequence: 1. Barista steams milk 2. Pours milk into coffee mug 3. Creates heart-shaped milk art 4. Barista's warm smile. Facial Expression: Determined yet welcoming smile from barista. Object Interaction: Detailed focus on milk art creation. Negative Constraints: Avoid spillage or fumbling.",
+    "camera_motion": "Slow pan",
+    "duration": 4
+  },
+  "input_image_urls": []
+}

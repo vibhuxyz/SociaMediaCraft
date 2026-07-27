@@ -15,43 +15,37 @@
     "music",
     "voice"
   ],
-  "agent_workflow": [
-    "Director",
-    "Knowledge Selector",
+  "workflow": [
     "Story Architect",
     "Cinematography Director",
     "Environment Designer",
     "Sound Designer",
-    "Prompt Engineer",
-    "Quality Reviewer"
+    "Prompt Engineer"
   ],
-  "structural_requirements": {
-    "shot_count": { "min": 6, "max": 12 },
-    "mandatory_elements": [
-      "The Hook (0-3s)",
-      "The Problem",
-      "The Solution (Product Reveal)",
-      "The Call to Action (Logo & Tagline)"
+  "required_outputs": ["CreativePlan", "ShotList", "PromptPack"],
+  "scene_limit": 6,
+  "duration": 30,
+  "generation_strategy": "sequential",
+  "required_assets": ["logo", "brand_colors"],
+  "quality_checks": [
+    "Check if CTA is present in the final scene",
+    "Check if brand name is mentioned within first 5 seconds"
+  ],
+  "hard_rules": {
+    "Story Architect": [
+      "CTA Required in final scene"
+    ],
+    "Cinematography Director": [
+      "Aspect Ratio: 16:9",
+      "Must not exceed scene limit"
+    ],
+    "Brand Identity": [
+      "Logo optional (use placeholder if unavailable)",
+      "Brand Mention Required within first 5 seconds"
+    ],
+    "Sound Designer": [
+      "Must include background music",
+      "Must include voiceover"
     ]
-  },
-  "output_schema": {
-    "type": "object",
-    "properties": {
-      "title": { "type": "string" },
-      "logline": { "type": "string" },
-      "shots": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "shot_number": { "type": "integer" },
-            "duration": { "type": "string" },
-            "visual_prompt": { "type": "string" },
-            "voiceover": { "type": "string" },
-            "sound_design": { "type": "string" }
-          }
-        }
-      }
-    }
   }
 }

@@ -6,6 +6,6 @@ async def knowledge_agent_node(state):
         state,
         KnowledgeResearchPlan,
         "Summarize available brand knowledge, references, template rules, and localization context.",
-        KnowledgeResearchPlan(),
+        KnowledgeResearchPlan(), state_key="knowledge_research"
     )
     return {"knowledge_research": plan}

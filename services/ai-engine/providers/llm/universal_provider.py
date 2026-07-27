@@ -11,12 +11,19 @@ T = TypeVar("T", bound=BaseModel)
 
 
 class UniversalLLMProvider:
-    def __init__(self, openai_key: str, anthropic_key: str):
-        os.environ["OPENAI_API_KEY"] = openai_key
-        os.environ["ANTHROPIC_API_KEY"] = anthropic_key
+    def __init__(self, openai_key: str = "", anthropic_key: str = "", openrouter_key: str = "", custom_key: str = "", custom_base: str = ""):
+        if openai_key:
+            os.environ["OPENAI_API_KEY"] = openai_key
+        if anthropic_key:
+            os.environ["ANTHROPIC_API_KEY"] = anthropic_key
+        if openrouter_key:
+            os.environ["OPENROUTER_API_KEY"] = openrouter_key
 
-        self._openai_client = AsyncOpenAI(api_key=openai_key)
-        self._anthropic_client = AsyncAnthropic(api_key=anthropic_key)
+        self.custom_key = custom_key
+        self.custom_base = custom_base
+
+        self._openai_client = AsyncOpenAI(api_key=openai_key) if openai_key else None
+        self._anthropic_client = AsyncAnthropic(api_key=anthropic_key) if anthropic_key else None
 
     def get_native_client(self, provider: str) -> Any:
         if provider == "openai":
@@ -34,6 +41,17 @@ class UniversalLLMProvider:
         response_model: Type[T],
         timeout: float | None = None,
     ) -> T:
+        import time
+        from dependencies import planning_metrics
+        
+        start_time = time.time()
+        
+        kwargs = {}
+        if self.custom_base:
+            kwargs["api_base"] = self.custom_base
+        if self.custom_key:
+            kwargs["api_key"] = self.custom_key
+        
         response = await litellm.acompletion(
             model=model,
             messages=[
@@ -42,7 +60,18 @@ class UniversalLLMProvider:
             ],
             response_format=response_model,
             timeout=timeout,
+            **kwargs
         )
+        
+        duration = time.time() - start_time
+        try:
+            cost = litellm.completion_cost(completion_response=response) or 0.0
+        except Exception:
+            cost = 0.0
+        
+        planning_metrics["total_time_sec"] += duration
+        planning_metrics["total_cost_usd"] += cost
+        planning_metrics["api_calls"] += 1
 
         raw_json = response.choices[0].message.content
         return response_model.model_validate_json(raw_json)
@@ -61,12 +90,19 @@ class UniversalLLMProvider:
         tool_functions = tool_functions or {}
         messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}]
         
+        kwargs = {}
+        if self.custom_base:
+            kwargs["api_base"] = self.custom_base
+        if self.custom_key:
+            kwargs["api_key"] = self.custom_key
+        
         # 1. Ask the LLM
         response = await litellm.acompletion(
             model=model,
             messages=messages,
             tools=tools,
-            tool_choice="auto"
+            tool_choice="auto",
+            **kwargs
         )
         msg = response.choices[0].message
         
@@ -97,7 +133,8 @@ class UniversalLLMProvider:
         final_response = await litellm.acompletion(
             model=model,
             messages=messages,
-            response_format=response_model # type: ignore
+            response_format=response_model, # type: ignore
+            **kwargs
         )
         
         content = final_response.choices[0].message.content
